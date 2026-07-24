@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #12001e, #2a0033, #1f002b, #0a0014);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.stars-container, .hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle linear infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.floating-heart {
+    position: absolute;
+    color: rgba(255, 105, 180, 0.5);
+    font-size: 20px;
+    user-select: none;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+#confettiCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Glass Card & Unlock Setup */
+.unlock-container {
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 28px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 105, 180, 0.25);
+    padding: 35px 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.lock-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.6));
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #fff;
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px rgba(255, 105, 180, 0.8);
+}
+
+.unlock-desc {
+    color: #d1d1d1;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.unlock-desc span {
+    color: #ff9ebb;
+    font-weight: 500;
+    display: block;
+    margin-top: 6px;
+}
+
+/* PIN Dots */
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.pin-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.pin-dot.filled {
+    background: #ff4b8b;
+    border-color: #ff75a0;
+    box-shadow: 0 0 12px #ff4b8b;
+}
+
+.pin-dot.error {
+    background: #ff3355;
+    border-color: #ff002b;
+    box-shadow: 0 0 12px #ff002b;
+}
+
+.error-msg {
+    min-height: 24px;
+    color: #ff7597;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    transition: opacity 0.3s ease;
+}
+
+/* Keypad Grid */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    justify-items: center;
+}
+
+.key-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.15s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.key-btn:hover {
+    background: rgba(255, 105, 180, 0.3);
+    border-color: rgba(255, 182, 193, 0.5);
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+}
+
+.key-btn:active {
+    transform: scale(0.95);
+}
+
+.key-btn.special {
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Shake animation for wrong PIN */
+.shake {
+    animation: shakeAnim 0.4s ease-in-out;
+}
+
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-12px); }
+    40% { transform: translateX(12px); }
+    60% { transform: translateX(-8px); }
+    80% { transform: translateX(8px); }
+}
+
+/* Success Reveal Overlay */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 0, 18, 0.92);
+    backdrop-filter: blur(25px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 200;
+    transition: opacity 1s ease;
+}
+
+.success-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.pulse-heart {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: heartPulse 1.2s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px #ff4b8b);
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(255, 105, 180, 0.2);
+    border: 1px solid rgba(255, 105, 180, 0.5);
+    border-radius: 20px;
+    color: #ffb3c6;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.greeting {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+
+.romantic-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #ff75a0;
+    text-shadow: 0 0 15px rgba(255, 117, 160, 0.8);
+    margin-bottom: 15px;
+}
+
+.welcome-text {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.welcome-text span {
+    color: #ffb3c6;
+    font-weight: 500;
+}
