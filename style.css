@@ -1,0 +1,231 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:Poppins,sans-serif;
+
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#8f94fb,#5d54a4);
+
+background-size:400% 400%;
+
+animation:bg 12s ease infinite;
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+@keyframes bg{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
+}
+
+.hero{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:4rem;
+
+font-family:"Great Vibes";
+
+margin-bottom:20px;
+
+}
+
+.hero h2{
+
+height:40px;
+
+font-weight:600;
+
+margin-bottom:25px;
+
+}
+
+.hero p{
+
+max-width:700px;
+
+font-size:1.2rem;
+
+line-height:1.8;
+
+}
+
+button{
+
+margin-top:40px;
+
+padding:16px 40px;
+
+border:none;
+
+border-radius:40px;
+
+background:white;
+
+color:#ff4b7d;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+font-weight:bold;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+}
+
+.glass{
+
+width:80%;
+
+margin:80px auto;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(15px);
+
+padding:50px;
+
+border-radius:25px;
+
+line-height:2;
+
+font-size:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+}
+
+.glass h2{
+
+margin-bottom:25px;
+
+font-family:"Great Vibes";
+
+font-size:50px;
+
+}
+
+.spanish{
+
+font-size:35px;
+
+font-family:"Great Vibes";
+
+text-align:center;
+
+margin:30px 0;
+
+}
+
+.counter,.quotes,.ending{
+
+padding:100px 20px;
+
+text-align:center;
+
+}
+
+#seconds{
+
+font-size:55px;
+
+font-weight:bold;
+
+margin-top:30px;
+
+}
+
+#quote{
+
+margin-top:40px;
+
+font-size:28px;
+
+font-style:italic;
+
+max-width:800px;
+
+margin-inline:auto;
+
+transition:.8s;
+
+}
+
+.heart{
+
+position:fixed;
+
+bottom:-20px;
+
+font-size:20px;
+
+animation:float linear forwards;
+
+pointer-events:none;
+
+}
+
+@keyframes float{
+
+to{
+
+transform:translateY(-120vh) rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:3rem;
+
+}
+
+.glass{
+
+width:92%;
+
+padding:30px;
+
+}
+
+}
