@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentInput = currentInput.slice(0, -1);
             }
         } else if (val === 'heart') {
-            // Heart button secret easter egg
+            // Heart button secret
             errorMsg.textContent = "❤️ Follow your heart's memory...";
             return;
         } else {
