@@ -85,54 +85,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }, 6000);
 
-    // --- Audio Player Synth Melody (Web Audio API) ---
-    let isPlaying = false;
-    let audioCtx = null;
-    let timerId = null;
+    // --- Local Audio Player ---
     const musicBtn = document.getElementById('musicToggle');
     const musicText = document.getElementById('musicText');
+    const musicIcon = document.getElementById('musicIcon');
+    const audio = document.getElementById('romanticAudio');
 
-    function playRomanticMelody() {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const notes = [261.63, 329.63, 392.00, 493.88, 523.25, 493.88, 392.00, 329.63];
-        let noteIdx = 0;
+    let isPlaying = false;
 
-        function playNote() {
-            if (!isPlaying) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(notes[noteIdx], audioCtx.currentTime);
-
-            gain.gain.setValueAtTime(0, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.3);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.8);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 1.8);
-
-            noteIdx = (noteIdx + 1) % notes.length;
-            timerId = setTimeout(playNote, 1200);
+    
+    musicBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            pauseMusic();
+        } else {
+            playMusic();
         }
+    });
 
-        playNote();
+    function playMusic() {
+        
+        audio.play()
+            .then(() => {
+                isPlaying = true;
+                musicText.textContent = "Pause Song";
+                musicIcon.textContent = "⏸️";
+                musicBtn.classList.add('playing');
+            })
+            .catch(error => {
+                console.error("Audio playback error:", error);
+            });
     }
 
-    musicBtn.addEventListener('click', () => {
-        if (!isPlaying) {
-            isPlaying = true;
-            musicText.textContent = "Pause Music";
-            playRomanticMelody();
-        } else {
-            isPlaying = false;
-            musicText.textContent = "Play Our Song";
-            if (audioCtx) audioCtx.close();
-            clearTimeout(timerId);
-        }
+    function pauseMusic() {
+        audio.pause();
+        isPlaying = false;
+        musicText.textContent = "Play Our Song";
+        musicIcon.textContent = "🎵";
+        musicBtn.classList.remove('playing');
+    }
+
+    
+    audio.addEventListener('ended', () => {
+        pauseMusic();
     });
 
     // --- Scroll Fade-In Observer ---
