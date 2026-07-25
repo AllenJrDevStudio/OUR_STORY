@@ -157,7 +157,8 @@ body {
     font-size: 2.8rem;
     margin-bottom: 20px;
     background: linear-gradient(135deg, #fff, #ffb3c6);
-    -webkit-background-clip: text;
+    background-clip: text;                
+    -webkit-background-clip: text;          
     -webkit-text-fill-color: transparent;
 }
 
