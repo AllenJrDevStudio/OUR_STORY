@@ -63,32 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     typeLoop();
-
-    // --- Live Counter ---
-    // Target date set to a special memory date (e.g. 521 days ago)
-    const startDate = new Date();
-    startDate.setDate(startDate.getDate() - 521);
-    startDate.setHours(startDate.getHours() - 13);
-    startDate.setMinutes(startDate.getMinutes() - 42);
-
-    function updateCounter() {
-        const now = new Date();
-        const diff = now - startDate;
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / 1000 / 60) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        document.getElementById('days').textContent = String(days).padStart(3, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    }
-
-    setInterval(updateCounter, 1000);
-    updateCounter();
-
+    
     // --- Rotating Quotes ---
     const quotes = [
         { text: "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.", author: "— Maya Angelou" },
@@ -196,23 +171,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-// Modal Logic
-function openModal(cardEl) {
-    const modal = document.getElementById('imageModal');
-    const visual = document.getElementById('modalVisual');
-    const caption = document.getElementById('modalCaption');
-    
-    const placeholder = cardEl.querySelector('.photo-placeholder');
-    const cardCaption = cardEl.querySelector('.photo-caption').textContent;
-
-    visual.className = 'modal-visual ' + placeholder.classList[1];
-    visual.innerHTML = placeholder.querySelector('.photo-emoji').textContent;
-    caption.textContent = cardCaption;
-
-    modal.style.display = 'flex';
-}
-
-function closeModal() {
-    document.getElementById('imageModal').style.display = 'none';
-}
