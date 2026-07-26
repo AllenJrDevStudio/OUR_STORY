@@ -296,14 +296,14 @@ body {
 
 .gallery-img {
     width: 100%;
-    height: 200px; 
+    aspect-ratio: 3 / 4;
     object-fit: cover; 
     display: block;
     transition: transform 0.3s ease;
 }
 
 .photo-card:hover .gallery-img {
-    transform: scale(1.05);
+    transform: scale(1.10);
 }
 
 
@@ -396,3 +396,4 @@ body {
     .typewriter-box { font-size: 1.7rem; }
     .photo-grid { grid-template-columns: 1fr; }
 }
+

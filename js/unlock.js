@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         unlockCard.classList.add('shake');
         pinDots.forEach(dot => dot.classList.add('error'));
 
-        // Pick random wrong message
+        // Pick random wrong message -- Section not working
         const randomMsg = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
         errorMsg.textContent = randomMsg;
 
@@ -127,14 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
             successOverlay.classList.add('active');
         }, 800);
 
-        // Auto transition after 3.2s
+        // Auto transition after 5s
         setTimeout(() => {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 1s ease';
             setTimeout(() => {
                 window.location.href = 'love.html';
             }, 1000);
-        }, 3200);
+        }, 5000);
     }
 
     // Confetti Animation
